@@ -1,0 +1,28 @@
+footer {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 2rem;
+    padding: 1.5rem;
+}
+
+#page-bottom {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.75rem;
+    color: #888;
+    font-family: Arial, sans-serif;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-ul {
+    list-style: none;
+    font-weight: 200;
+}
+
+.footer-ul>li:hover {
+    text-decoration: underline;
+
+}
