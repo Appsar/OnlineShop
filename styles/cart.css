@@ -1,0 +1,31 @@
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 2rem;
+    gap: 1rem;
+    border: 1px solid black;
+}
+
+.cart-card {
+    border: 1px solid rgb(138, 138, 138);
+    width: 30%;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    padding: 1rem;
+
+}
+
+.cart-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    display: block;
+}

@@ -1,16 +1,24 @@
 let productsItems = document.getElementById("product-items")
 
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 function loadItems() {
     fetch('https://fakestoreapi.com/products')
         .then(response => response.json())
         .then((data) => {
-            console.log(data)
             data.forEach(element => {
                 const card = document.createElement("div");
                 const image = document.createElement("img");
                 const title = document.createElement("p");
                 const price = document.createElement("p");
                 const button = document.createElement("button");
+
+                button.addEventListener("click", () => {
+                    cart.push(element);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    //alert("Added " + element.title + "To Cart.")
+                    console.log(cart);
+                })
 
                 image.src = element.image;
                 title.textContent = element.title;
@@ -36,3 +44,4 @@ function loadItems() {
 }
 
 loadItems();
+
