@@ -2,6 +2,8 @@ let cart = getCart();
 console.log(cart);
 
 let cartItems = document.getElementById("cart-items");
+let totalPrice = document.getElementById("total-price");
+let totalItemsAll = document.getElementById("total-items");
 
 function loadCart() {
     cart.forEach((element, index) => {
@@ -17,6 +19,18 @@ function loadCart() {
             location.reload();
         })
 
+        let total = 0;
+        cart.forEach(item => {
+            total += item.price
+        })
+        totalPrice.textContent = "Total price: " + total + " $";
+
+        let totalItems = 0;
+        cart.forEach(item => {
+            totalItems += item.quantity || 1;
+        })
+        totalItemsAll.textContent = "Total items: " + totalItems;
+
         image.src = element.image;
         title.textContent = element.title;
         price.textContent = element.price + " $";
@@ -31,6 +45,8 @@ function loadCart() {
         image.style.height = "150px";
         image.style.objectFit = "contain";
 
+
+        console.log(totalItems);
         card.append(image, title, price, button);
         cartItems.append(card);
 
