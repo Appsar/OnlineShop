@@ -16,3 +16,21 @@
     border: 2px solid hsla(0, 0%, 0%, 0.4);
     border-radius: 15px;
 }
+
+@media (max-width: 768px) {}
+
+@media (max-width: 480px) {
+    #product-items {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 12px;
+        padding: 10px;
+    }
+
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-image {
+        height: 140px;
+    }
+}

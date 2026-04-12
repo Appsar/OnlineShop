@@ -1,8 +1,5 @@
 //Get where to create and input the product-items created from api fetch
 const productsItems = document.getElementById("product-items")
-const searchInput = document.getElementById("nav-search");
-const savedSearch = localStorage.getItem("search");
-
 
 let allProducts = [];
 
@@ -13,22 +10,26 @@ function loadItems() {
         .then(response => response.json())
         .then((data) => {
             allProducts = data.products;
-            renderProducts(allProducts);
             searchedProducts()
         });
 };
 
 
 function searchedProducts() {
-    if (!savedSearch) return;
+    const savedSearch = localStorage.getItem("search");
+
+    if (!savedSearch) {
+        renderProducts(allProducts)
+        return;
+    }
 
     searchInput.value = savedSearch;
 
-    const filterd = allProducts.filter(product =>
+    const filtered = allProducts.filter(product =>
         product.title.toLowerCase().includes(savedSearch.toLowerCase())
     );
 
-    renderProducts(filterd)
+    renderProducts(filtered)
 
 }
 
