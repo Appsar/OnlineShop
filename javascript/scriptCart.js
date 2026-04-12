@@ -23,7 +23,7 @@ function loadCart() {
         cart.forEach(item => {
             total += item.price
         })
-        totalPrice.textContent = "Total price: " + total + " $";
+        totalPrice.textContent = "Total price: " + total.toFixed(2) + " $";
 
         let totalItems = 0;
         cart.forEach(item => {
@@ -31,7 +31,7 @@ function loadCart() {
         })
         totalItemsAll.textContent = "Total items: " + totalItems;
 
-        image.src = element.image;
+        image.src = element.thumbnail;
         title.textContent = element.title;
         price.textContent = element.price + " $";
         button.textContent = "Remove item";

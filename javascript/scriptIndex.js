@@ -22,13 +22,13 @@ containers.forEach((container) => {
 });
 
 function loadSlide(index) {
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://dummyjson.com/products')
         .then(response => response.json())
         .then((data) => {
             containers.forEach((container, i) => {
-                container.querySelector("img").src = data[index + i].image
-                container.querySelector(".product-title").textContent = data[index + i].title;
-                container.querySelector(".product-price").textContent = data[index + i].price + " $";
+                container.querySelector("img").src = data.products[index + i].thumbnail
+                container.querySelector(".product-title").textContent = data.products[index + i].title;
+                container.querySelector(".product-price").textContent = data.products[index + i].price + " $";
             });
         });
 }

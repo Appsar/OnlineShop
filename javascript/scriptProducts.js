@@ -6,11 +6,11 @@ let allProducts = [];
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function loadItems() {
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://dummyjson.com/products')
         .then(response => response.json())
         .then((data) => {
-            allProducts = data;
-            renderProducts(data);
+            allProducts = data.products;
+            renderProducts(allProducts);
         });
 };
 
@@ -24,7 +24,7 @@ function renderProducts(products) {
         const price = document.createElement("p");
         const button = document.createElement("button");
 
-        image.src = element.image;
+        image.src = element.thumbnail;
         title.textContent = element.title;
         price.textContent = element.price + " $";
         button.textContent = "Add To Cart";
