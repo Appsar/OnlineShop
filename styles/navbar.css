@@ -33,6 +33,12 @@ nav {
     gap: 2rem;
 }
 
+#search-btn:hover {
+    background-color: rgb(210, 208, 208);
+    border-radius: 15px;
+    padding: 1px;
+}
+
 .logo-name {
     display: flex;
     justify-content: center;

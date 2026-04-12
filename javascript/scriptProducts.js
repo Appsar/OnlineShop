@@ -1,22 +1,42 @@
+//Get where to create and input the product-items created from api fetch
 const productsItems = document.getElementById("product-items")
 const searchInput = document.getElementById("nav-search");
+const savedSearch = localStorage.getItem("search");
+
 
 let allProducts = [];
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+//Function to fetch products from api and then a function to render them out
 function loadItems() {
     fetch('https://dummyjson.com/products')
         .then(response => response.json())
         .then((data) => {
             allProducts = data.products;
             renderProducts(allProducts);
+            searchedProducts()
         });
 };
 
+
+function searchedProducts() {
+    if (!savedSearch) return;
+
+    searchInput.value = savedSearch;
+
+    const filterd = allProducts.filter(product =>
+        product.title.toLowerCase().includes(savedSearch.toLowerCase())
+    );
+
+    renderProducts(filterd)
+
+}
+
+//Function to create each element using DOM and then rendering them out
 function renderProducts(products) {
     productsItems.innerHTML = "";
 
+    //Which elements to create for each product
     products.forEach(element => {
         const card = document.createElement("div");
         const image = document.createElement("img");
@@ -24,14 +44,16 @@ function renderProducts(products) {
         const price = document.createElement("p");
         const button = document.createElement("button");
 
+        //Content inside each element
         image.src = element.thumbnail;
         title.textContent = element.title;
         price.textContent = element.price + " $";
         button.textContent = "Add To Cart";
 
+        //Eventlistener for adding item to cart which saves them also in localstorage on browser
         button.addEventListener("click", () => {
             cart.push(element);
-            saveCart();
+            saveCart(cart);
             //alert("Added " + element.title + "To Cart.")
             console.log(cart);
         })
@@ -51,6 +73,7 @@ function renderProducts(products) {
     })
 }
 
+//Listens to the search bar and filters out products from the input
 searchInput.addEventListener("input", (search) => {
     const searchValue = search.target.value.toLowerCase();
     console.log(searchValue);

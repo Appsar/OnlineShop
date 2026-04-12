@@ -10,3 +10,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.product-card {
+    padding: 1rem;
+    border: 2px solid hsla(0, 0%, 0%, 0.4);
+    border-radius: 15px;
+}

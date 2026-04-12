@@ -1,6 +1,3 @@
-let cart = getCart();
-console.log(cart);
-
 let cartItems = document.getElementById("cart-items");
 let totalPrice = document.getElementById("total-price");
 let totalItemsAll = document.getElementById("total-items");
