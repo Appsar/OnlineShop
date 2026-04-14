@@ -1,5 +1,8 @@
 //Find flex item and where to put in product slide
 let containers = document.querySelectorAll(".flex-item");
+const hotrightnow = document.getElementById("wearityourway")
+const prevBtn = document.querySelector(".previous-btn")
+const nextBtn = document.querySelector(".next-btn")
 let currentIndex = 0;
 
 //Create new elements for the product carasouel on startpage
@@ -26,14 +29,30 @@ containers.forEach((container) => {
 //Function to fetch 20 products from api and display in a carasouel slide on startpage
 function loadSlide(index) {
     fetch('https://dummyjson.com/products')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Something went wrong...");
+            } return response.json();
+        })
         .then((data) => {
             containers.forEach((container, i) => {
                 container.querySelector("img").src = data.products[index + i].thumbnail
                 container.querySelector(".product-title").textContent = data.products[index + i].title;
                 container.querySelector(".product-price").textContent = data.products[index + i].price + " $";
             });
-        });
+        })
+        .catch(error => {
+            console.log(error)
+            containers.forEach((container, i) => {
+                container.style.display = "none"
+                prevBtn.style.display = "none"
+                nextBtn.style.display = "none"
+            })
+            const errorMsg = document.createElement("h1");
+            errorMsg.textContent = error.message;
+            errorMsg.classList.add("errorMsg")
+            hotrightnow.append(errorMsg)
+        })
 }
 
 loadSlide(0);

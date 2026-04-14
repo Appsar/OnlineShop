@@ -7,11 +7,23 @@ let allProducts = [];
 //Function to fetch products from api and then a function to render them out
 function loadItems() {
     fetch('https://dummyjson.com/products')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Something went wrong")
+            }
+            return response.json()
+        })
         .then((data) => {
             allProducts = data.products;
             searchedProducts()
-        });
+        })
+        .catch(error => {
+            console.log(error)
+            const errorMsg = document.createElement("h1");
+            errorMsg.textContent = error.message;
+            errorMsg.style.color = "red"
+            productsItems.append(errorMsg)
+        })
 };
 
 
@@ -86,6 +98,7 @@ searchInput.addEventListener("input", (search) => {
     console.log(filtered);
     renderProducts(filtered);
 })
+
 
 loadItems();
 
