@@ -2,6 +2,7 @@
 const menuToggle = document.getElementById("menu-toggle");
 const navMenu = document.getElementById("nav-menu");
 
+//Listens to click on hamburger menu in mobile version to toggle it
 menuToggle.addEventListener("click", () => {
     navMenu.classList.toggle("active");
 });
@@ -10,6 +11,7 @@ menuToggle.addEventListener("click", () => {
 const searchInput = document.getElementById("nav-search")
 const searchBtn = document.getElementById("search-btn");
 
+//Listens if searchbar button has been pressed and if so saves the value inside the searchbar to localstorage
 searchBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -17,11 +19,12 @@ searchBtn.addEventListener("click", (e) => {
 
     saveSearch(value);
 
+    //Redirects to product page
     window.location.href = "../pages/products.html"
 
 })
 
-//Removes previous searched product
+//Removes previous searched product by removing it from localstorage "search"
 const productlink = document.querySelector('a[href="products.html"]')
 
 productlink.addEventListener("click", () => {
