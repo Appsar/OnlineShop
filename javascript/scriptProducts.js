@@ -18,6 +18,13 @@ function loadItems() {
         })
         //If api works render all the products out.
         .then((data) => {
+
+            //If api works but has no content then show message
+            if (!data.products || data.products.length === 0) {
+                productsItems.innerHTML = "<h2>No products found</h2>";
+                return;
+            }
+
             allProducts = data.products;
             searchedProducts()
         })
@@ -27,6 +34,7 @@ function loadItems() {
             const errorMsg = document.createElement("h1");
             errorMsg.textContent = error.message;
             errorMsg.style.color = "red"
+            productsItems.innerHTML = "";
             productsItems.append(errorMsg)
         })
 };
@@ -63,6 +71,12 @@ function searchedProducts() {
     const filtered = allProducts.filter(product =>
         product.title.toLowerCase().includes(savedSearch.toLowerCase())
     );
+
+    //If search found nothing show text
+    if (filtered.length === 0) {
+        productsItems.innerHTML = "<h2>No results found 🔍</h2>";
+        return;
+    }
 
     //Renders all products that matched
     renderProducts(filtered)

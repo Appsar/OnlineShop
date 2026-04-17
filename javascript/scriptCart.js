@@ -5,6 +5,12 @@ let totalItemsAll = document.getElementById("total-items");
 
 //Function to load the shopping cart.
 function loadCart() {
+
+    //If cart is empty show text
+    if (cart.length === 0) {
+        cartItems.innerHTML = "<h2>Your cart is empty 🛒</h2>";
+    }
+
     //Creates a product card for each product stored in localestorage from product site
     cart.forEach((element, index) => {
         const card = document.createElement("div");
