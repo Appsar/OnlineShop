@@ -105,7 +105,7 @@ function renderProducts(products) {
         button.addEventListener("click", () => {
             cart.push(element);
             saveCart(cart);
-            //alert("Added " + element.title + "To Cart.")
+            alert("Added  '" + element.title + "' To Cart.")
             console.log(cart);
         })
 
